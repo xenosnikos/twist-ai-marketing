@@ -52,6 +52,21 @@
         }
     }
 
+    async function startPresentation() {
+        // Enter fullscreen
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            await elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            await elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            await elem.msRequestFullscreen();
+        }
+
+        // Go to slide 2
+        goToSlide(1);
+    }
+
     onMount(() => {
         window.addEventListener('keydown', handleKeydown);
         window.addEventListener('touchstart', handleTouchStart);
@@ -90,6 +105,11 @@
                             <li>{item}</li>
                         {/each}
                     </ul>
+                {/if}
+                {#if i === 0}
+                    <button class="start-presentation-btn" on:click={startPresentation}>
+                        Start Presentation →
+                    </button>
                 {/if}
 
             {:else if slide.type === 'content'}
@@ -284,6 +304,27 @@
         height: auto;
         max-height: 150px;
         object-fit: contain;
+    }
+
+    .start-presentation-btn {
+        background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+        color: #1a1a1a;
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: 16px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 3rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .start-presentation-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 12px 40px rgba(255, 215, 0, 0.5);
+        background: linear-gradient(135deg, #FFC700 0%, #FFB700 100%);
     }
 
     @media (max-width: 768px) {
