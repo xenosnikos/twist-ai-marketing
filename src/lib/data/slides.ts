@@ -26,7 +26,7 @@ export const slides: Slide[] = [
         type: 'title',
         title: 'AI Enrichment for Marketing Funnels',
         subtitle: 'MCP + Workflow Orchestration',
-        logo: '/assets/dofinity-slide-1.png'
+        logo: '/assets/dofinity-logo.png'
     },
 
     // Slide 2: The Current Challenge
